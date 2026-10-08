@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use OBJECHO45, please the paper below."
+title: "OBJECHO45: Airborne Ultrasonic Echo Dataset and Cross-SNR Benchmark for Discrimination"
+type: dataset
+authors:
+  - family-names: Chenda
+    given-names: Manith
+    affiliation: Kangwon National University
+    orcid: "https://orcid.org/0009-0001-1074-2732"
+  - family-names: Park
+    given-names: Sangwook
+    affiliation: Kangwon National University
+    orcid: "https://orcid.org/0000-0001-5009-2394"
+repository-code: "https://github.com/KNU-LMAP/OBJECHO45"
+license:
+  - MIT
+  - CC-BY-4.0
+preferred-citation:
+  type: conference-paper
+  title: "OBJECHO45: Airborne Ultrasonic Echo Dataset and Cross-SNR Benchmark for Discrimination"
+  authors:
+    - family-names: Chenda
+      given-names: Manith
+    - family-names: Park
+      given-names: Sangwook
+  collection-title: "Proceedings of the IEEE International Conference on Consumer Eelectronics-Asia (ICCE-Asia)"
+  year: 2026
