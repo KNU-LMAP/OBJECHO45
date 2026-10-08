@@ -1,0 +1,17 @@
+# Dataset and release archives (shipped as GitHub Release assets, no tracking)
+data/
+*.zip
+
+# Model pre-trained weights (shipped as a GitHub Release asset)
+*.pth
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Editor/OS related
+.vscode/
+.DS_Store
