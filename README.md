@@ -4,6 +4,8 @@ Airborne ultrasonic echo dataset and cross-SNR benchmark for object shape discri
 13,419 stereo echo recordings (250 kHz, broadband FM pulse) of six rigid shapes at nine
 orientations, forming 45 classes.
 
+> **NOTE: This repository is under construction. Once finished, this note will disappear!**
+
 ## Download
 
 To be released as GitHub Release assets.
@@ -24,4 +26,4 @@ If you use OBJECHO45, please cite:
 The DOI and URL will be added once published.
 
 ## License
-Code: MIT. Data: CC BY 4.0. (C) 2026 Laboratory for Machine Auditory Perception (L-MAP), Kangwon National University.
+Code: MIT. Data: CC BY 4.0. (c) 2026 Laboratory for Machine Auditory Perception (L-MAP), Kangwon National University.
