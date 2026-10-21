@@ -49,9 +49,9 @@ Orientations are `00, 10, 20, 30, 45, 55, 65, 75, 90` degrees. A class is an **o
 
 Levels are `30dB, 20dB, 10dB, 00dB, -5dB, -10dB`. All sets use the same clip names.
 
-**Noise:** White Gaussian noise is scaled so that each clip and each channel separately reaches the target SNR. One identically seeded generator per level (seed 1) makes the noise reproducible byte for byte, and each clip uses the same noise pattern at every SNR level. The 4 ms copies are stored as float because 16-bit quantization would realize only about 29.6 dB at a 30 dB target
+**Noise:** White Gaussian noise is scaled so that each clip and each channel separately reaches the target SNR. Each clip uses the same noise pattern at every SNR level, so the levels differ only in amplitude. scripts/make_noisy.py rebuilds the 4 ms set exactly from the clean recordings, using one random generator per level (seed 1). That generator originally ran over all 15,668 recordings in sorted order, so the script also advances it over the 2,249 excluded ones. This was checked with NumPy 2.4.4. NumPy does not promise identical random streams across versions, so the files in the release are the reference. The 4 ms copies are stored as float because 16-bit quantization would realize only about 29.6 dB at a 30 dB target.
 
-**32 ms mono:** Each 4 ms echo (channel 1 only) is embedded at samples 1000-1999 of an 8000-sample window, and noise is then added the whole window. Teh echo fills 12.5% of the window and the rest carries noise, not silence. These files are 16-bit PCM , so at high SNR the realized SNR is slightly below nominal.
+**32 ms mono:** Each 4 ms echo (channel 1 only) is embedded at samples 1000-1999 of an 8000-sample window, and noise is then added to the whole window. The echo fills 12.5% of the window and the rest carries noise, not silence. These files are 16-bit PCM, so at high SNR the realized SNR is slightly below nominal.
 
 **Auditory spectrograms:** computed from the 32 ms mono clips by the auditory frontend of BioNet-A (Park & Elhilali, 2026). They are stored as raw values, converted from float64 to float32. BioNet5-A's per-clip min-max scaling to [0, 1] is applied by the model, not stored in the files.
 
