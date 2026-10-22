@@ -1,5 +1,6 @@
 # Dataset and release archives (shipped as GitHub Release assets, no tracking)
 data/
+release/
 *.zip
 
 # Model pre-trained weights (shipped as a GitHub Release asset)
