@@ -4,11 +4,15 @@ Airborne ultrasonic echo dataset and cross-SNR benchmark for object shape discri
 13,419 stereo echo recordings (250 kHz, broadband FM pulse) of six rigid shapes at nine
 orientations, forming 45 classes.
 
-> **NOTE: This repository is under construction. Once finished, this note will disappear!**
+See [DATASHEET.md](DATASHEET.md) for how the data was recorded and processed.
+
+> **Status:** the dataset files are being uploaded as the `v1.0` release of this repository.
+> Baseline code and pretrained weights will follow.
 
 ## Download
 
-To be released as GitHub Release assets.
+The dataset is distributed as GitHub Release assets (release `v1.0`): one zip per SNR level
+for each version of the data. Download instructions will be added when the upload is complete.
 
 ## Citation
 
@@ -16,9 +20,9 @@ If you use OBJECHO45, please cite:
 
 ```bibtex
 @INPROCEEDINGS{chenda-park2026objecho45,
-    title       = {{OBJECHO45}:Airborne Ultrasonic Echo Dataset and Cross-{SNR} Benchmark for Discrimination},
+    title       = {{OBJECHO45}: Airborne Ultrasonic Echo Dataset and Cross-{SNR} Benchmark for Discrimination},
     author      = {Chenda, Manith and Park, Sangwook},
-    booktitle   = {Proceedings of the IEEE International Conference on Consumer Eletronics-Asia (ICCE-Asia)},
+    booktitle   = {Proceedings of the IEEE International Conference on Consumer Electronics-Asia (ICCE-Asia)},
     year        = {2026}
 }
 ```
