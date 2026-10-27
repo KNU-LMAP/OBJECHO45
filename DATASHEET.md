@@ -63,7 +63,7 @@ Levels are `30dB, 20dB, 10dB, 00dB, -5dB, -10dB`. All sets use the same clip nam
 
 - One synthetic emitter, one recording campaign, and fixed distance (50 cm) and object size.
 - Strong class imbalance (10.7:1).
-- The 32 ms and auditory sets have on channel, so the level difference between the two channels, a potential cue to orientation, is not available in them.
+- The 32 ms and auditory sets have one channel, so the level difference between the two channels, a potential cue to orientation, is not available in them.
 - Noise is white and Gaussian. Real-world interference (wind, other ultrasonic sources, reverberation) is not covered.
 
 ## Personal data and ethics

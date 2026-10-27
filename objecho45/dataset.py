@@ -36,7 +36,7 @@ class OBJECHO45:
 
     The paper's cross-validation uses one fold for validation and the other nine for training:
 
-        val = OBJECHO45(root, "noisy_4ms", 30, folds[k])
+        val = OBJECHO45(root, "noisy_4ms", 30, folds=[k])
         train = OBJECHO45(root, "noisy_4ms", 30, folds=[f for f in range(1, 11) if f != k])
     """
 
