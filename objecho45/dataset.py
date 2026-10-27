@@ -20,23 +20,23 @@ def _read_csv(path):
         return list(csv.DictReader(f))
 
 class OBJECHO45:
-    """This clips of one version of OBJECHO45.
+    """The clips of one version of OBJECHO45.
     
     Args:
         root: folder that holds clean_4ms/, noisy_4ms/, noisy_32ms/ and auditory/
         version: "clean_4ms", "noisy_4ms", "noisy_32ms" or "auditory"
-        snd_db_ one of 30, 20, 10, 0, -5, -10 for every version except "clean_4ms"
+        snr_db: one of 30, 20, 10, 0, -5, -10 for every version except "clean_4ms"
         folds: keep only the clips in these folds (1-10); None keeps all 13,419
         metadata_dir: folder with classes.csv and folds_10.csv
 
     `ds[i]` returns `(x, class_index)`. Waveforms come back as float32 arrays of shape
     (samples, channels), scaled to [-1, 1] by the file format and otherwise untouched;
     auditory spectrograms come back as stored, shape (128, 320). `ds.classes[class_index]`
-    is the class name and `ds.clips[i] holds the clip id, class, fold and path.
+    is the class name and `ds.clips[i]` holds the clip id, class, fold and path.
 
     The paper's cross-validation uses one fold for validation and the other nine for training:
 
-        val = OBJECHO45(root, "noisy_4ms", 30, folds[k])
+        val = OBJECHO45(root, "noisy_4ms", 30, folds=[k])
         train = OBJECHO45(root, "noisy_4ms", 30, folds=[f for f in range(1, 11) if f != k])
     """
 

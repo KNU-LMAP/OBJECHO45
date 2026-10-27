@@ -2,7 +2,7 @@
 
 ## Overview
 
-OBJECHO45 is a dataset of airborne ultrasonic echoes from six rigid 3D shapes, with a cross-SNR benchmark for object-orientation discrimination. It has **13,419 streo clips** in **45 classes**, a fixed 10-fold split, and noisy copies at six SNR levels. For the paper and baseline results, see [README](README.md).
+OBJECHO45 is a dataset of airborne ultrasonic echoes from six rigid 3D shapes, with a cross-SNR benchmark for object-orientation discrimination. It has **13,419 stereo clips** in **45 classes**, a fixed 10-fold split, and noisy copies at six SNR levels. For the paper and baseline results, see [README](README.md).
 
 ## Recording setup
 
@@ -24,7 +24,7 @@ OBJECHO45 is a dataset of airborne ultrasonic echoes from six rigid 3D shapes, w
 
 Orientations are `00, 10, 20, 30, 45, 55, 65, 75, 90` degrees. A class is an **object-orientation pair**, such as `cube_45`; `metadata/classes.csv` lists all 45 with their index (0-44, in alphabetical order) and clip count.
 
-**Excluded orientation:** two sysmetries make some object-orientation labels physically indistinguishable, so they aren't part of this dataset:
+**Excluded orientations:** two symmetries make some object-orientation labels physically indistinguishable, so they aren't part of this dataset:
 
 - `sphere` is rotationally symmetric, so only `sphere_00` is incorporated.
 - `cube` has four-fold symmetry about the vertical axis, so `cube_90` shows the same face as `cube_00` and is dropped.
@@ -33,14 +33,14 @@ Orientations are `00, 10, 20, 30, 45, 55, 65, 75, 90` degrees. A class is an **o
 
 ## Naming
 ```
-<objec>_<angle>_<distance>_<size>_<index>.wav      e.g. cylinder_45_0.5m_5_0168.wav
+<object>_<angle>_<distance>_<size>_<index>.wav      e.g. cylinder_45_0.5m_5_0168.wav
 ```
 
 `distance` is always `0.5m` and `size` is always `5` (cm), so neither is a variable. `index` runs from 0001 within each object-orientation group.
 
 ## Versions of the data
 
-| Set | Channles | Length | Samples | Format | Notes |
+| Set | Channels | Length | Samples | Format | Notes |
 |---|:---:|:---:|:---:|---|---|
 | `clean_4ms` | stereo | 4 ms | 1000 | 16-bit PCM | the native recordings |
 | `noisy_4ms/<level>` | stereo | 4 ms | 1000 | 32-bit float | clean + white Gaussian noise |
@@ -63,12 +63,12 @@ Levels are `30dB, 20dB, 10dB, 00dB, -5dB, -10dB`. All sets use the same clip nam
 
 - One synthetic emitter, one recording campaign, and fixed distance (50 cm) and object size.
 - Strong class imbalance (10.7:1).
-- The 32 ms and auditory sets have on channel, so the level difference between the two channels, a potential cue to orientation, is not available in them.
+- The 32 ms and auditory sets have one channel, so the level difference between the two channels, a potential cue to orientation, is not available in them.
 - Noise is white and Gaussian. Real-world interference (wind, other ultrasonic sources, reverberation) is not covered.
 
 ## Personal data and ethics
 
-The recoridngs are ultrasonic echoes from inanimated objectss in a laboratory setting. They contain no speech, no people and no personal or sensitive information.
+The recordings are ultrasonic echoes from inanimate objects in a laboratory setting. They contain no speech, no people and no personal or sensitive information.
 
 ## License and citation
 

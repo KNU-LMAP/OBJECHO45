@@ -13,14 +13,14 @@ def awgn(signal, snr_db, rng):
     
     SNR is defined on power: SNR_dB = 10 * log10(P_signal / P_noise), so the noise variance
     needed is P_signal / 10**(SNR_db / 10). Each noise sample is an independent draw from
-    N(0, sigma^2) where signma^2 is the noise variance.
+    N(0, sigma^2) where sigma^2 is the noise variance.
 
     P_signal is measured per clip and per channel, not once over the whole dataset:
     clip power varies by about 91x and the two receivers' power can differ by up to about 10 dB,
     so a single noise level would not give any individual clip or channel the nominal SNR.
     `signal` has shape (samples, channels); a 1-D (mono) array works the same way.
 
-    `rng` is a numpy random number generator. The released sets use on genrator per SNR level,
+    `rng` is a numpy random number generator. The released sets use one generator per SNR level,
     created with `np.random.default_rng(SEED)`, so a clip gets the same noise pattern at every
     SNR level and the levels differ only in amplitude.
     """
