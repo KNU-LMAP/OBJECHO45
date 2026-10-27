@@ -68,7 +68,7 @@ Levels are `30dB, 20dB, 10dB, 00dB, -5dB, -10dB`. All sets use the same clip nam
 
 ## Personal data and ethics
 
-The recordings are ultrasonic echoes from inanimated objects in a laboratory setting. They contain no speech, no people and no personal or sensitive information.
+The recordings are ultrasonic echoes from inanimate objects in a laboratory setting. They contain no speech, no people and no personal or sensitive information.
 
 ## License and citation
 

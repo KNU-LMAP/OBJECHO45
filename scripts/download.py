@@ -1,4 +1,4 @@
-"""Download the OBJECHO45 releass files, check them against SHA256SUMS and unpack them.
+"""Download the OBJECHO45 release files, check them against SHA256SUMS and unpack them.
 
 Each release zip holds paths such as noisy_4ms/30dB/<clip>.wav and is unpacked into --out
 (data/ by default), which gives the folder layout that objecho45/dataset.py expects.
@@ -11,7 +11,7 @@ Usage:
 
 Note:
 - GitHub allows < 2 GB per file attached to a release. Thus, the whole auditory spectrograms are divided into 2 parts.
-  The scripts downloads and and unpacks both part in the same folder automatically.
+  The script downloads and unpacks both parts in the same folder automatically.
 - Files that were downloaded and unpacked before are skipped unless --force is given.
 """
 
@@ -30,7 +30,7 @@ BASE_URL = "https://github.com/KNU-LMAP/OBJECHO45/releases/download/v1.0"
 SETS = ("clean_4ms", "noisy_4ms", "noisy_32ms", "auditory")
 
 def asset_names(sets, levels):
-    """"File names of the release zips needed for the chosen sets and SNR levels."""
+    """File names of the release zips needed for the chosen sets and SNR levels."""
     names = []
     for name in sets:
         if name == "clean_4ms":

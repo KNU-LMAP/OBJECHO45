@@ -25,7 +25,7 @@ class OBJECHO45:
     Args:
         root: folder that holds clean_4ms/, noisy_4ms/, noisy_32ms/ and auditory/
         version: "clean_4ms", "noisy_4ms", "noisy_32ms" or "auditory"
-        snd_db: one of 30, 20, 10, 0, -5, -10 for every version except "clean_4ms"
+        snr_db: one of 30, 20, 10, 0, -5, -10 for every version except "clean_4ms"
         folds: keep only the clips in these folds (1-10); None keeps all 13,419
         metadata_dir: folder with classes.csv and folds_10.csv
 
