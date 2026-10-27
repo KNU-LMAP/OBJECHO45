@@ -9,7 +9,7 @@ from .noise import SNR_DB_LEVELS, level_name
 VERSIONS = {
         "clean_4ms": ".wav",
         "noisy_4ms": ".wav",
-        "noisey_32ms": ".wav",
+        "noisy_32ms": ".wav",
         "auditory": ".npy",
         }
 
@@ -46,7 +46,7 @@ class OBJECHO45:
         if version == "clean_4ms":
             if snr_db is not None:
                 raise ValueError("clean_4ms has no SNR level; leave snr_db as None")
-        elif snr_db not in SNR_DB_LEVEL:
+        elif snr_db not in SNR_DB_LEVELS:
             raise ValueError(f"snr_db must be one of {SNR_DB_LEVELS}, got {snr_db!r}")
 
         metadata_dir = metadata_dir or DEFAULT_METADATA_DIR
