@@ -1,0 +1,6 @@
+# Exact versions used to produce the numbers in the paper
+# Python 3.14.6
+numpy==2.4.4
+soundfile==0.14.0
+torch==2.13.0
+tqdm==4.65.0
