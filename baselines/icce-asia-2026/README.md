@@ -2,11 +2,11 @@
 
 Code behind the results table of *OBJECHO45: Airborne Ultrasonic Echo Dataset and Cross-SNR Benchmark for Discrimination* (ICCE-Asia 2026). This directory is frozen and self-contained; it does not import the `objecho45` package, so future changes to the package do not alter the paper's numbers.
 
-**Status: under construction.** The data pipeline is here. The model, training and evaluation code, and the trained weights are coming in subsequent pull requests.
+**Status: under construction.** The data pipeline and models (ConvNeXt1D and ConvNeXt1D+BiGRU for both 4 ms stereo and 32 ms mono inputs) are here. The training and evaluation code, BioNet5-A, and the trained weights are coming in subsequent pull requests.
 
 ## Models
 
-ConvNeXt1D and ConvNeXt1D+BiGRU, each on the 4 ms stereo and 32 ms mono clips, and BioNet5-A.
+ConvNeXt1D and ConvNeXt1D+BiGRU, each on the 4 ms stereo and 32 ms mono clips, and BioNet5-A (to be added).
 
 ## Environment
 
@@ -21,3 +21,4 @@ pip install -r requirements.txt
 - `requirements.txt`: pinned packages
 - `dataset.py`: reads the clips, labels and folds, and applies the paper's scaling
 - `utils.py`: class weights for the loss (rare classes count more) and pooled/macro accuracy.
+- `model.py`: model definitions of ConvNeXt1D and ConvNeXt1D+BiGRU for both 4 ms stereo and 32 ms mono inputs, and model registry.
