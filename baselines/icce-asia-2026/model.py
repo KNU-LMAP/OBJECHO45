@@ -258,3 +258,12 @@ class ConvNeXt1DBiGRU32ms(nn.Module):
         concat = torch.cat([rnn_out, cnn_out], dim=1)   # (N, 2*HIDDEN_SIZE + 224): (N, 312)
 
         return self.head(concat)    # (N, 312) --> (N, n_classes)
+
+
+# Model registry: a lookup table from each model's name in the paper to its class
+MODELS = {
+    "ConvNeXt1D": ConvNeXt1D4ms,
+    "ConvNeXt1D (32 ms)": ConvNeXt1D32ms,
+    "ConvNeXt1D+BiGRU": ConvNeXt1DBiGRU4ms,
+    "ConvNeXt1D+BiGRU (32 ms)": ConvNeXt1DBiGRU32ms,
+}
