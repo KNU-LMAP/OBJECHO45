@@ -194,3 +194,67 @@ class ConvNeXt1DBiGRU4ms(nn.Module):
         concat = torch.cat([rnn_out, cnn_out], dim=1)   # (N, HIDDEN_SIZE * 2 + 96): (N, 184)
 
         return self.head(concat)    # (N, 184) --> (N, n_classes)
+
+
+class ConvNeXt1DBiGRU32ms(nn.Module):
+    """ConvNeXt1D+BiGRU for 32 ms mono inputs: (N, 1, 8000) --> (N, n_classes)"""
+
+    def __init__(self, n_classes=NUM_CLASSES, dropout=DROPOUT):
+        super().__init__()
+
+        # Front-end block (dense stem + strided convolution)
+        self.frontend = nn.Sequential(
+            nn.Conv1d(1, 32, kernel_size=8, stride=1, padding="same"),  # (N, 1, 8000) --> (N, 32, 8000)
+            nn.GELU(),
+            nn.LayerNorm(8000),
+            nn.Conv1d(32, 32, kernel_size=4, stride=4),     # (N, 32, 8000) --> (N, 32, 2000)
+        )
+
+        # Encoder block (ConvNeXt1D x3, with *depthwise downsampling* after each of them, followed by a final normalization)
+        self.encoder = nn.Sequential(
+            EncoderBlock(2000),
+            nn.LayerNorm(2000),
+            nn.Conv1d(32, 32, kernel_size=4, stride=4, groups=32),     # (N, 32, 2000) --> (N, 32, 500)
+
+            EncoderBlock(500),
+            nn.LayerNorm(500),
+            nn.Conv1d(32, 32, kernel_size=4, stride=4, groups=32),     # (N, 32, 500) --> (N, 32, 125)
+
+            EncoderBlock(125),
+            nn.LayerNorm(125),
+            nn.Conv1d(32, 32, kernel_size=4, stride=4, groups=32),      # (N, 32, 125) --> (N, 32, 31)
+            nn.LayerNorm(31),
+        )
+
+        # Recurrent path
+        self.gru = nn.GRU(input_size=32, hidden_size=HIDDEN_SIZE, batch_first=True, bidirectional=True)     # (N, 31, 32) --> (N, 31, 2 * HIDDEN_SIZE)
+        self.pool = AttentionPool(hidden_size=HIDDEN_SIZE*2)      # (N, 31, 2 * HIDDEN_SIZE) --> (N, 2 * HIDDEN_SIZE)
+
+        # Convolutional path
+        self.convhead = nn.Sequential(
+            nn.Conv1d(32, 32, kernel_size=4, stride=4, groups=32),      # (N, 32, 31) --> (N, 32, 7)
+            nn.Flatten(),       # (N, 32, 7) --> (N, 224)
+        )
+
+        # Concatenation head
+        self.head = nn.Sequential(
+            nn.Dropout(dropout),
+            nn.Linear(HIDDEN_SIZE*2 + 224, n_classes),      # (N, HIDDEN_SIZE*2 + 224) --> (N, n_classes)
+        )
+
+    def forward(self, x):
+        x = self.frontend(x)    # (N, 1, 8000) --> (N, 32, 2000)
+        x = self.encoder(x)     # (N, 32, 2000) --> (N, 32, 31)
+
+        # Recurrent path
+        gru_in = x.transpose(1, 2)  # swaps the position of C and L: (N, 32, 31) --> (N, 31, 32)
+        gru_out, _ = self.gru(gru_in)   # (N, 31, 32) --> (N, 31, 2 * HIDDEN_SIZE)
+        rnn_out = self.pool(gru_out)    # (N, 31, 2 * HIDDEN_SIZE) --> (N, 2 * HIDDEN_SIZE)
+
+        # Convolutional path
+        cnn_out = self.convhead(x)      # (N, 32, 31) --> (N, 224)
+
+        # Concatenation
+        concat = torch.cat([rnn_out, cnn_out], dim=1)   # (N, 2*HIDDEN_SIZE + 224): (N, 312)
+
+        return self.head(concat)    # (N, 312) --> (N, n_classes)
